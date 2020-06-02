@@ -1,0 +1,25 @@
+.list-item {
+  border: rgb(235, 235, 240) solid 1px;
+  padding: 9px;
+  height: 50px;
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+
+  .mail-header {
+    width: 15%;
+    border-right: 1px solid rgb(235, 235, 240);
+    .subject {
+      font-weight: 600;
+      padding: 2px;
+    }
+    .sender {
+      font-size: 0.8em;
+      font-weight: 200;
+      padding: 2px;
+    }
+  }
+  .content {
+    width: 75%;
+    padding: 5px 0 5px 20px;
+  }
+}

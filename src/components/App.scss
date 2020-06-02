@@ -1,0 +1,20 @@
+.main_view {
+  display: flex;
+}
+
+.navbar {
+  border: black 1px solid;
+  height: 9vh;
+}
+.sidebar {
+  height: 90vh;
+  // width: 8%;
+  flex-grow: 1;
+  border: black 2px solid;
+  // display: inline-block;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
