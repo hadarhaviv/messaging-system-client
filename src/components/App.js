@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.scss';
-import Dashboard from './Dashboard/Dashboard';
+import Navbar from './Navbar/Navbar';
+import Sidebar from './Sidebar/Sidebar';
 
 function App() {
   return (
     <div className="App">
-      <div className="navbar">navbar</div>
-      <div className="main_view">
-        <div className="sidebar">side bar</div>
-        <Dashboard view={'inbox'} />
-      </div>
+      <Navbar />
+      <Sidebar />
     </div>
   );
 }

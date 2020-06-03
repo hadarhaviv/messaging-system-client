@@ -21,11 +21,9 @@ const Dashboard = props => {
     const newItems = items.filter(item => item._id !== id);
     setItems(newItems);
   };
-
   return (
     <DashboardContext.Provider value={handleDelete}>
       <div className="dashboard">
-        <div>{props.view.toUpperCase()}</div>
         {items ? <ListItems items={items} /> : 'Loading..'}
       </div>
     </DashboardContext.Provider>
