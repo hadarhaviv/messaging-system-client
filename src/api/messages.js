@@ -10,3 +10,12 @@ export const getInboxMessages = async () => {
     console.log(err);
   }
 };
+
+export const deleteMessageById = async id => {
+  try {
+    const results = await axios.delete(`${Domain}/messages/${id}`);
+    return results.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
