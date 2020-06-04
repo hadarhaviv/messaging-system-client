@@ -1,11 +1,11 @@
-import axios from 'axios';
-
-const Domain = 'http://localhost:5000/api/v1';
+import api from './api';
 
 export const getInboxMessages = async () => {
   try {
-    const results = await axios.get(`${Domain}/messages/`);
-    return results.data;
+    const results = await api.get(`/messages/inbox`);
+    if (results) {
+      return results.data;
+    }
   } catch (err) {
     console.log(err);
   }
@@ -13,7 +13,7 @@ export const getInboxMessages = async () => {
 
 export const deleteMessageById = async id => {
   try {
-    const results = await axios.delete(`${Domain}/messages/${id}`);
+    const results = await api.delete(`/messages/${id}`);
     return results.data;
   } catch (err) {
     console.log(err);

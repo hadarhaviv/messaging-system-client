@@ -1,5 +1,9 @@
+$header-size: 60px;
+$aside-size: 250px;
+
 .navbar {
-  // float: left;
+  font-family: 'Mali', cursive;
+  font-size: 2rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -8,5 +12,31 @@
   background-color: #111;
   color: #fff;
   height: 50px;
-  text-align: center;
+  height: $header-size;
+  line-height: $header-size;
+  button {
+    cursor: pointer;
+    color: #fff;
+    -webkit-appearance: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: $header-size;
+    width: $header-size;
+    vertical-align: top;
+    background: transparent;
+    border-right: 1px solid rgba(255, 255, 255, 0.7);
+    margin-right: 15px;
+    align-items: flex-start;
+    // @include transition(background-color 0.3s linear);
+    &:hover,
+    &:focus,
+    &.active {
+      outline: none;
+    }
+    &:hover,
+    &.active {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
 }

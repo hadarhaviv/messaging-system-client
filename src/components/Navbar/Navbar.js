@@ -9,7 +9,7 @@ const Navbar = ({ view }) => {
       <button id="menu" title="Menu">
         <FontAwesomeIcon icon={faBars} />
       </button>
-      Mail It
+      MailIt
     </div>
   );
 };
