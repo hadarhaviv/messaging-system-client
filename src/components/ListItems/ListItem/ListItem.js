@@ -1,22 +1,24 @@
 import React, { useContext } from 'react';
 import './ListItem.scss';
 import DashboardContext from '../../Dashboard/DashboardContext';
+import MailForm from '../../MailForm/MailForm';
 
-const ListItem = ({ item, onDelete }) => {
-  const { sender, subject, messageBody } = item;
-  const handleDelete = useContext(DashboardContext);
+const ListItem = ({ item }) => {
+  const { sender, subject, body, _id } = item;
+  const [handleDelete, setModal] = useContext(DashboardContext);
 
   return (
-    <div className="list-item">
+    <div className="list-item" onClick={() => setModal(_id)}>
       <div className="mail-header">
         <div className="sender">{sender.name}</div>
         <div className="subject">{subject}</div>
       </div>
-      <div className="content">{messageBody}</div>
+      <div className="content">{body}</div>
       <div
         className="delete-icon"
-        onClick={() => {
+        onClick={e => {
           handleDelete(item._id);
+          e.stopPropagation();
         }}
       >
         X

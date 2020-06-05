@@ -1,4 +1,5 @@
 import axios from 'axios';
+import setAuthToken from '../utils/setAuthToken';
 
 const api = axios.create({
   baseURL: 'http://localhost:5000/api/v1/',
@@ -17,9 +18,9 @@ const api = axios.create({
 api.interceptors.response.use(
   res => res,
   err => {
-    if (err.response.data.msg === 'Token is not valid') {
-      // store.dispatch({ type: LOGOUT });
-      // store.dispatch({ type: CLEAR_PROFILE });
+    if (err.response.status === 401) {
+      window.location.href = '/';
+      setAuthToken();
       console.log(err);
     }
     return Promise.reject(err);

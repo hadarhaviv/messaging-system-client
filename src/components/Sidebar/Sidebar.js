@@ -1,15 +1,11 @@
 import React from 'react';
 import './Sidebar.scss';
-import { BrowserRouter as Switch, Route, Router, Link } from 'react-router-dom';
-import Dashboard from '../Dashboard/Dashboard';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <ul>
-        <li>
-          <Link to="/#">New Mail</Link>
-        </li>
         <li>
           <Link to="/inbox">Inbox</Link>
         </li>

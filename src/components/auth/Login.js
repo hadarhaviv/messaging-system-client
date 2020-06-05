@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallBack } from 'react';
+import React, { useState } from 'react';
 import './Login.scss';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../api/login';
