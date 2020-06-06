@@ -14,6 +14,10 @@ $aside-size: 250px;
   height: 50px;
   height: $header-size;
   line-height: $header-size;
+  .logo {
+    margin-left: 10px;
+    display: inline-block;
+  }
   button {
     cursor: pointer;
     color: #fff;
@@ -38,5 +42,12 @@ $aside-size: 250px;
     &.active {
       background-color: rgba(0, 0, 0, 0.1);
     }
+  }
+  .logout {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    float: right;
+    margin-right: 25px;
   }
 }

@@ -11,7 +11,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import Dashboard from './Dashboard/Dashboard';
-import MailForm from './MailForm/MailForm.js';
+import NewMailForm from './NewMailForm/NewMailForm.js';
 
 const ROUTES = ['inbox', 'sent-items'];
 
@@ -33,8 +33,11 @@ function App() {
     console.log('side bar is closing');
   };
 
-  const handleLogin = () => {
-    setAuth(true);
+  const handleLogin = isLoggedIn => {
+    if (!isLoggedIn) {
+      window.location.href = '/';
+    }
+    setAuth(isLoggedIn);
   };
 
   const authRoutes = (
@@ -49,7 +52,12 @@ function App() {
             render={() => <Dashboard view={route} />}
           />
         ))}
-        <Route exact path={`/new-mail`} key={'new-mail'} component={MailForm} />
+        <Route
+          exact
+          path={`/new-mail`}
+          key={'new-mail'}
+          component={NewMailForm}
+        />
         <Redirect exact from="/" to="/inbox" />
       </Switch>
     </>
@@ -59,7 +67,7 @@ function App() {
     <div className="App">
       <Router>
         {isAuth ? authRoutes : null}
-        <Navbar />
+        <Navbar setAuth={handleLogin} />
         <Login isAuth={isAuth} handleLogin={handleLogin} />
       </Router>
     </div>

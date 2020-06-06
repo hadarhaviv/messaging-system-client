@@ -3,7 +3,6 @@ import setAuthToken from '../utils/setAuthToken';
 
 export const login = async (email, password) => {
   const body = JSON.stringify({ email, password });
-
   try {
     const results = await api.post('/auth/login', body);
     const { token } = results.data;
@@ -11,7 +10,10 @@ export const login = async (email, password) => {
       setAuthToken(token);
     }
   } catch (err) {
-    const errors = err.response.data.errors;
-    console.log(errors);
+    if (err.response) {
+      throw new Error(err.response.data.error);
+    } else {
+      throw new Error(err);
+    }
   }
 };

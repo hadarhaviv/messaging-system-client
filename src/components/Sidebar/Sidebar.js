@@ -1,16 +1,20 @@
 import React from 'react';
 import './Sidebar.scss';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <ul>
         <li>
-          <Link to="/inbox">Inbox</Link>
+          <NavLink activeClassName="active" to="/inbox" exact>
+            Inbox
+          </NavLink>
         </li>
         <li>
-          <Link to="/sent-items">Sent Items</Link>
+          <NavLink activeClassName="active" exact to="/sent-items">
+            Sent Items
+          </NavLink>
         </li>
       </ul>
     </div>

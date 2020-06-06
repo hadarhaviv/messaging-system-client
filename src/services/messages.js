@@ -29,7 +29,7 @@ export const sendMail = async data => {
       return results.data;
     }
   } catch (err) {
-    console.log(err);
+    throw new Error(err.message);
   }
 };
 

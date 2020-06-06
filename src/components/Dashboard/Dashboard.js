@@ -6,11 +6,13 @@ import {
   getInboxMessages,
   deleteMessageById,
   getSentItems
-} from '../../api/messages';
-import ModalWrapper from '../layout/ModalWrapper';
-import MailForm from '../MailForm/MailForm';
+} from '../../services/messages';
+import ModalWrapper from '../layout/ModalWrapper/ModalWrapper';
+import NewMailForm from '../NewMailForm/NewMailForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import MailForm from '../MailForm/MailForm';
+import Spinner from '../layout/Spinner/Spinner';
 
 const Dashboard = props => {
   const [items, setItems] = useState(null);
@@ -39,21 +41,16 @@ const Dashboard = props => {
   };
 
   const handleClose = () => {
-    setModal(false);
+    setModal(null);
+    fetchData();
   };
 
   const generateComponent = item => {
     if (item === 'newMail') {
-      return <MailForm />;
+      return <NewMailForm handleSubmit={handleClose} />;
     }
     const itemData = items.find(i => item === i._id);
-    return (
-      <div>
-        <h3>Receiver: {itemData.receiver.name}</h3>
-        <h1>Subject: {itemData.subject}</h1>
-        <p>{itemData.body}</p>
-      </div>
-    );
+    return <MailForm itemData={itemData} />;
   };
 
   return (
@@ -62,7 +59,7 @@ const Dashboard = props => {
         <button onClick={() => setModal('newMail')}>
           <FontAwesomeIcon icon={faPlus} />
         </button>
-        {items ? <ListItems items={items} /> : 'Loading..'}
+        {items ? <ListItems items={items} /> : <Spinner />}
       </div>
       {modal && (
         <ModalWrapper handleClose={handleClose}>

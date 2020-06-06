@@ -18,11 +18,10 @@ const api = axios.create({
 api.interceptors.response.use(
   res => res,
   err => {
-    if (err.response.status === 401) {
-      window.location.href = '/';
+    if (err.response && err.response.status === 401) {
       setAuthToken();
-      console.log(err);
     }
+    console.log(err);
     return Promise.reject(err);
   }
 );

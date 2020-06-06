@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-// import './ModalWrapper.scss';
 
 const ModalWrapper = ({ children, handleClose }) => {
-  //const [isOpen, setOpen] = useState(true);
-
   const onCloseModal = () => {
     handleClose();
   };
@@ -18,3 +16,8 @@ const ModalWrapper = ({ children, handleClose }) => {
 };
 
 export default ModalWrapper;
+
+ModalWrapper.propTypes = {
+  children: PropTypes.object.isRequired,
+  handleClose: PropTypes.func.isRequired
+};

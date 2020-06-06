@@ -1,15 +1,20 @@
 import React from 'react';
 import './Navbar.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-const Navbar = ({ view }) => {
+import setAuthToken from '../../utils/setAuthToken';
+
+const Navbar = ({ setAuth }) => {
+  const handleLogout = () => {
+    setAuthToken();
+    setAuth();
+  };
+
   return (
     <div className="navbar">
-      <button id="menu" title="Menu">
-        <FontAwesomeIcon icon={faBars} />
-      </button>
-      MailIt
+      <div className="logo">MailIt</div>
+      <div onClick={handleLogout} className="logout">
+        Logout
+      </div>
     </div>
   );
 };

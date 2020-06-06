@@ -15,10 +15,11 @@
     color: #818181;
     display: block;
     padding: 10px;
-    &:hover {
-      color: #f1f1f1;
-    }
   }
+  .active {
+    color: #f1f1f1;
+  }
+
   li {
     list-style-type: none;
   }

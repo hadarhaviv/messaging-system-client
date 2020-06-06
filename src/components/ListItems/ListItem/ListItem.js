@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import './ListItem.scss';
+import PropTypes from 'prop-types';
 import DashboardContext from '../../Dashboard/DashboardContext';
-import MailForm from '../../MailForm/MailForm';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ListItem = ({ item }) => {
   const { sender, subject, body, _id } = item;
@@ -21,10 +23,14 @@ const ListItem = ({ item }) => {
           e.stopPropagation();
         }}
       >
-        X
+        <FontAwesomeIcon icon={faTrash} />
       </div>
     </div>
   );
 };
 
 export default ListItem;
+
+ListItem.propTypes = {
+  item: PropTypes.object.isRequired
+};
