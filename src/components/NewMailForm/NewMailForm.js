@@ -3,8 +3,9 @@ import './NewMailForm.scss';
 import { sendMail } from '../../services/messages';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 
-const NewMailForm = props => {
+const NewMailForm = ({ handleSubmit }) => {
   const [formData, setFormData] = useState({
     email: '',
     subject: '',
@@ -19,7 +20,7 @@ const NewMailForm = props => {
     e.preventDefault();
     try {
       await sendMail(formData);
-      props.handleSubmit();
+      handleSubmit();
     } catch (err) {
       setError(err);
     }
@@ -70,3 +71,7 @@ const NewMailForm = props => {
 };
 
 export default NewMailForm;
+
+NewMailForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
+};
