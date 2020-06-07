@@ -12,7 +12,7 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" exact to="/sent-items">
+          <NavLink activeClassName="active" to="/sent-items" exact>
             Sent Items
           </NavLink>
         </li>

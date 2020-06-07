@@ -15,19 +15,26 @@ import MailForm from '../MailForm/MailForm';
 import Spinner from '../layout/Spinner/Spinner';
 
 const Dashboard = props => {
-  const [items, setItems] = useState(null);
+  const [items, setItems] = useState([]);
   const [modal, setModal] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = useCallback(async () => {
+    setLoading(true);
     try {
-      const resItems =
-        props.view === 'inbox'
-          ? await getInboxMessages()
-          : await getSentItems();
-      setItems(resItems.data);
+      let resItems;
+      if (props.view === 'inbox') {
+        resItems = await getInboxMessages();
+      } else if (props.view === 'sent-items') {
+        resItems = await getSentItems();
+      }
+      if (resItems) {
+        setItems(resItems.data);
+      }
     } catch (err) {
       console.log(err);
     }
+    setLoading(false);
   }, [props]);
 
   useEffect(() => {
@@ -36,8 +43,7 @@ const Dashboard = props => {
 
   const handleDelete = async id => {
     await deleteMessageById(id);
-    const newItems = items.filter(item => item._id !== id);
-    setItems(newItems);
+    await fetchData();
   };
 
   const handleClose = () => {
@@ -59,7 +65,7 @@ const Dashboard = props => {
         <button onClick={() => setModal('newMail')}>
           <FontAwesomeIcon icon={faPlus} />
         </button>
-        {items ? <ListItems items={items} /> : <Spinner />}
+        {loading ? <Spinner /> : <ListItems items={items} />}
       </div>
       {modal && (
         <ModalWrapper handleClose={handleClose}>

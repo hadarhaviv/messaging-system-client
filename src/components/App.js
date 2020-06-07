@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.scss';
 import Navbar from './Navbar/Navbar';
 import Sidebar from './Sidebar/Sidebar';
@@ -25,24 +25,16 @@ function App() {
     }
   }, []);
 
-  const handleOpen = () => {
-    console.log('side bar is open');
-  };
-
-  const handleClose = () => {
-    console.log('side bar is closing');
-  };
-
-  const handleLogin = isLoggedIn => {
+  const handleLogin = useCallback(isLoggedIn => {
     if (!isLoggedIn) {
       window.location.href = '/';
     }
     setAuth(isLoggedIn);
-  };
+  }, []);
 
   const authRoutes = (
     <>
-      <Sidebar onOpen={handleOpen} onClose={handleClose} />
+      <Sidebar />
       <Switch>
         {ROUTES.map(route => (
           <Route

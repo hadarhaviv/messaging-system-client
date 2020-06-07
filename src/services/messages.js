@@ -3,9 +3,10 @@ import api from './api';
 export const getInboxMessages = async () => {
   try {
     const results = await api.get(`/messages/inbox`);
-    if (results) {
-      return results.data;
+    if (!results.data) {
+      return [];
     }
+    return results.data;
   } catch (err) {
     console.log(err);
   }
@@ -14,9 +15,10 @@ export const getInboxMessages = async () => {
 export const getSentItems = async () => {
   try {
     const results = await api.get(`/messages/sent-items`);
-    if (results) {
-      return results.data;
+    if (!results.data) {
+      return [];
     }
+    return results.data;
   } catch (err) {
     console.log(err);
   }
